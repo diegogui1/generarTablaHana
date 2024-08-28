@@ -18,10 +18,10 @@
 FROM node:14-slim
 
 WORKDIR /usr/src/app
-COPY gen/srv .
+COPY . /usr/src/app
 RUN npm install
-COPY app app/
-COPY . .
+ 
+
 RUN find app -name '*.cds' | xargs rm -f
 
 EXPOSE 4004
