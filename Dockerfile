@@ -21,7 +21,7 @@ WORKDIR /usr/src/app
 COPY gen/srv .
 RUN npm install
 COPY app app/
-COPY db/data db/data/
+COPY . .
 RUN find app -name '*.cds' | xargs rm -f
 
 EXPOSE 4004
