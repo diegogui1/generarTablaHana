@@ -3,7 +3,7 @@ _out
 *.db
 *.sqlite
 connection.properties
-
+package-lock.json
 .cdsrc-private.json
  
 node_modules/
