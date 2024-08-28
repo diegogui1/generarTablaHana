@@ -1,0 +1,16 @@
+{
+	"VIR_ZTTGS_MAESTRO": {
+		"target": {
+			"remote": "REPLICAHANACLOUD",
+			"schema": "SAPHANADB",
+			"object": "ZTTGS_MAESTRO"
+		}
+	},
+	"VIR_ZCFLIGHTS": {
+		"target": {
+			"remote": "REPLICAHANACLOUD",
+			"schema": "SAPHANADB",
+			"object": "ZCFLIGHTS"
+		}
+	}
+}

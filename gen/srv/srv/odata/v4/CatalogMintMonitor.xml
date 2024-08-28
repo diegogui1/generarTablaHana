@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="CatalogMintMonitor" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="erroresPA" EntityType="CatalogMintMonitor.erroresPA">
+          <NavigationPropertyBinding Path="ITEMS" Target="TablaErroresPASet"/>
+        </EntitySet>
+        <EntitySet Name="erroresOM" EntityType="CatalogMintMonitor.erroresOM"/>
+        <EntitySet Name="errores" EntityType="CatalogMintMonitor.errores"/>
+        <EntitySet Name="erroresTop5" EntityType="CatalogMintMonitor.erroresTop5"/>
+        <EntitySet Name="kpiPA" EntityType="CatalogMintMonitor.kpiPA"/>
+        <EntitySet Name="kpiOM" EntityType="CatalogMintMonitor.kpiOM"/>
+        <EntitySet Name="kpiTS" EntityType="CatalogMintMonitor.kpiTS"/>
+        <EntitySet Name="kpiTM" EntityType="CatalogMintMonitor.kpiTM"/>
+        <EntitySet Name="TablaErroresPASet" EntityType="CatalogMintMonitor.TablaErroresPASet"/>
+        <FunctionImport Name="kpiPA1" Function="CatalogMintMonitor.kpiPA1" EntitySet="kpiPA"/>
+        <FunctionImport Name="antiguedades" Function="CatalogMintMonitor.antiguedades"/>
+        <FunctionImport Name="integraciones" Function="CatalogMintMonitor.integraciones"/>
+      </EntityContainer>
+      <EntityType Name="erroresPA">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" Nullable="false"/>
+        <NavigationProperty Name="ITEMS" Type="Collection(CatalogMintMonitor.TablaErroresPASet)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <Property Name="ITEMS_IdMonitor" Type="Edm.String" MaxLength="2"/>
+      </EntityType>
+      <EntityType Name="erroresOM">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Lognumber" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Extnumber" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Otext" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Uneg" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Name1" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Land1" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="Aluser" Type="Edm.String" Nullable="false"/>
+        <Property Name="Objid" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="Otype" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Bukrs" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Butxt" Type="Edm.String" MaxLength="25" Nullable="false"/>
+        <Property Name="Persa" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Btrtl" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Aldate" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="Altime" Type="Edm.TimeOfDay" Nullable="false"/>
+        <Property Name="Clase" Type="Edm.String" Nullable="false"/>
+        <Property Name="IdError" Type="Edm.String" Nullable="false"/>
+        <Property Name="ErrorMsg" Type="Edm.String" Nullable="false"/>
+        <Property Name="Categorizacion" Type="Edm.String" Nullable="false"/>
+        <Property Name="Responsable" Type="Edm.String" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="errores">
+        <Property Name="CantErroresAp" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantErroresOm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantErroresTs" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantErroresTm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesAp" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesOm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesTs" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesTm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="erroresTop5">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="MSJ_Error" Type="Edm.String" MaxLength="100"/>
+        <Property Name="ID_Personal" Type="Edm.String" MaxLength="6"/>
+        <Property Name="Categoria_de_Error" Type="Edm.String" MaxLength="10"/>
+        <Property Name="Fecha_de_Error" Type="Edm.String" MaxLength="10"/>
+        <Property Name="Antiguedad" Type="Edm.String" MaxLength="10"/>
+        <Property Name="Negocio" Type="Edm.String" MaxLength="10"/>
+      </EntityType>
+      <EntityType Name="kpiPA">
+        <Property Name="CantTotal" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CantidadErrores" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CantExito" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Exito" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Fecha" Type="Edm.Date"/>
+        <Property Name="Hora" Type="Edm.TimeOfDay"/>
+      </EntityType>
+      <EntityType Name="kpiOM">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="CantidadErrores" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CantExito" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Exito" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <EntityType Name="kpiTS">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="CantidadErrores" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CantExito" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Exito" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <EntityType Name="kpiTM">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="CantidadErrores" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CantExito" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Exito" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <EntityType Name="TablaErroresPASet">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Lognumber" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Zuneg" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Name1" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Land1" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="Extnumber" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Aluser" Type="Edm.String" Nullable="false"/>
+        <Property Name="Ename" Type="Edm.String" Nullable="false"/>
+        <Property Name="Kostl" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Abkrs" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Bukrs" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Butxt" Type="Edm.String" MaxLength="25" Nullable="false"/>
+        <Property Name="Werks" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Btrtl" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Plans" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="Aldate" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="Altime" Type="Edm.TimeOfDay" Nullable="false"/>
+        <Property Name="Clase" Type="Edm.String" Nullable="false"/>
+        <Property Name="IdError" Type="Edm.String" Nullable="false"/>
+        <Property Name="ErrorMsg" Type="Edm.String" Nullable="false"/>
+        <Property Name="Categorizacion" Type="Edm.String" Nullable="false"/>
+        <Property Name="Responsable" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Tipo_medida" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Desc_medida" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Negocio" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Begda" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Endda" Type="Edm.String" MaxLength="10" Nullable="false"/>
+      </EntityType>
+      <ComplexType Name="antigued" OpenType="true">
+        <Property Name="TIPO_ERROR" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CANT_ERROR" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CANT_7" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CANT_14" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Fecha" Type="Edm.String"/>
+        <Property Name="CANT_MAS" Type="Edm.String"/>
+      </ComplexType>
+      <ComplexType Name="integracion">
+        <Property Name="ExitoTotal" Type="Edm.String" MaxLength="100"/>
+        <Property Name="ErrorTotal" Type="Edm.String" MaxLength="100"/>
+        <Property Name="TotalExitosos" Type="Edm.String" MaxLength="100"/>
+      </ComplexType>
+      <Function Name="kpiPA1" IsBound="false" IsComposable="false">
+        <ReturnType Type="CatalogMintMonitor.kpiPA"/>
+      </Function>
+      <Function Name="antiguedades" IsBound="false" IsComposable="false">
+        <ReturnType Type="Collection(CatalogMintMonitor.antigued)" Nullable="false"/>
+      </Function>
+      <Function Name="integraciones" IsBound="false" IsComposable="false">
+        <ReturnType Type="CatalogMintMonitor.integracion"/>
+      </Function>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

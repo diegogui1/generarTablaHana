@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="ZHRODATA_MONITOR_INTEGRACIONES_SRV" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="Grafico" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.Grafico"/>
+        <EntitySet Name="KpiPA" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.KpiPA"/>
+        <EntitySet Name="KpiOM" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.KpiOM"/>
+        <EntitySet Name="KpiTS" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.KpiTS"/>
+        <EntitySet Name="KpiTM" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.KpiTM"/>
+        <EntitySet Name="ErroresTop5" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.ErroresTop5"/>
+        <EntitySet Name="generalErrores" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.generalErrores"/>
+        <EntitySet Name="TablaCatErroresSet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaCatErroresSet"/>
+        <EntitySet Name="ReporteAPSet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.ReporteAPSet"/>
+        <EntitySet Name="MonitorIntegracionesSet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.MonitorIntegracionesSet">
+          <NavigationPropertyBinding Path="NavOM" Target="TablaErroresOMSet"/>
+          <NavigationPropertyBinding Path="NavPA" Target="TablaErroresPASet"/>
+          <NavigationPropertyBinding Path="NavTM" Target="TablaErroresTMSet"/>
+          <NavigationPropertyBinding Path="NavCat" Target="TablaCatErroresSet"/>
+          <NavigationPropertyBinding Path="NavTS" Target="TablaErroresTSSet"/>
+          <NavigationPropertyBinding Path="NavTop5" Target="TablaTop5Set"/>
+          <NavigationPropertyBinding Path="NavUE" Target="UltimaEjecucionSet"/>
+        </EntitySet>
+        <EntitySet Name="TablaErroresSAPPA" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaErroresSAPPA">
+          <NavigationPropertyBinding Path="ITEMS" Target="TablaErroresPASet"/>
+        </EntitySet>
+        <EntitySet Name="TablaErroresPASet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaErroresPASet"/>
+        <EntitySet Name="TablaErroresOMSet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaErroresOMSet"/>
+        <EntitySet Name="TablaErroresTMSet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaErroresTMSet"/>
+        <EntitySet Name="TablaErroresTSSet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaErroresTSSet"/>
+        <EntitySet Name="TablaTop5Set" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaTop5Set"/>
+        <EntitySet Name="UltimaEjecucionSet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.UltimaEjecucionSet"/>
+        <EntitySet Name="ListaClaseErrorSet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.ListaClaseErrorSet"/>
+        <EntitySet Name="ListaIdErrorSet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.ListaIdErrorSet"/>
+        <EntitySet Name="CategoriaErrorSet" EntityType="ZHRODATA_MONITOR_INTEGRACIONES_SRV.CategoriaErrorSet"/>
+      </EntityContainer>
+      <EntityType Name="Grafico">
+        <Property Name="TIPO_ERROR" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CANT_ERROR" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CANT_7" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CANT_14" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Fecha" Type="Edm.String"/>
+        <Property Name="CANT_MAS" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="KpiPA">
+        <Property Name="CantTotal" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CantidadErrores" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CantExito" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Exito" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Fecha" Type="Edm.Date"/>
+        <Property Name="Hora" Type="Edm.TimeOfDay"/>
+      </EntityType>
+      <EntityType Name="KpiOM">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="CantidadErrores" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CantExito" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Exito" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <EntityType Name="KpiTS">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="CantidadErrores" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CantExito" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Exito" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <EntityType Name="KpiTM">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="CantidadErrores" Type="Edm.String" MaxLength="100"/>
+        <Property Name="CantExito" Type="Edm.String" MaxLength="100"/>
+        <Property Name="Exito" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <EntityType Name="ErroresTop5">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="MSJ_Error" Type="Edm.String" MaxLength="100"/>
+        <Property Name="ID_Personal" Type="Edm.String" MaxLength="6"/>
+        <Property Name="Categoria_de_Error" Type="Edm.String" MaxLength="10"/>
+        <Property Name="Fecha_de_Error" Type="Edm.String" MaxLength="10"/>
+        <Property Name="Antiguedad" Type="Edm.String" MaxLength="10"/>
+        <Property Name="Negocio" Type="Edm.String" MaxLength="10"/>
+      </EntityType>
+      <EntityType Name="generalErrores">
+        <Property Name="CantErroresAp" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantErroresOm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantErroresTs" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantErroresTm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesAp" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesOm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesTs" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesTm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="TablaCatErroresSet">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+          <PropertyRef Name="Categorizacion"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Categorizacion" Type="Edm.String" Nullable="false"/>
+        <Property Name="Cantidad" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="Zuneg" Type="Edm.String" MaxLength="5" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="ReporteAPSet">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="FechaDesde" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="FechaHasta" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="Land1" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="MonPA" Type="Edm.String" MaxLength="1"/>
+        <Property Name="MonTS" Type="Edm.String" MaxLength="1"/>
+        <Property Name="MonTM" Type="Edm.String" MaxLength="1"/>
+        <Property Name="Ename" Type="Edm.String" Nullable="false"/>
+        <Property Name="Bukrs" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Werks" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Zuneg" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="CantErrores" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="ErroresPA" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="ErroresTS" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="ErroresTM" Type="Edm.String" MaxLength="6" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="MonitorIntegracionesSet">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="FechaDesde" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="FechaHasta" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="IdUsuario" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="Pais" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="TotIndexOk" Type="Edm.String" MaxLength="15" Nullable="false"/>
+        <Property Name="EjecutarPA" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="EjecutarOM" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="EjecutarTS" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="EjecutarTM" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="Error_Msg" Type="Edm.String" Nullable="false"/>
+        <Property Name="NotifMailMon" Type="Edm.Boolean" Nullable="false"/>
+        <Property Name="EsOxxo" Type="Edm.Boolean" Nullable="false"/>
+        <Property Name="GeneralErrores_CantErroresAp" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="GeneralErrores_CantErroresOm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="GeneralErrores_CantErroresTs" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="GeneralErrores_CantErroresTm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="GeneralErrores_CantSuccesAp" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="GeneralErrores_CantSuccesOm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="GeneralErrores_CantSuccesTs" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="GeneralErrores_CantSuccesTm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CategoriaErrores_ErrorOpera" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CategoriaErrores_ErrorNomina" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CategoriaErrores_ErrorConfig" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CategoriaErrores_ErrorBloqueo" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="AntiguedadErrores_Menor2" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="AntiguedadErrores_De2a7" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="AntiguedadErrores_Mayor7menor14" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="AntiguedadErrores_Mayor14" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <NavigationProperty Name="NavOM" Type="Collection(ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaErroresOMSet)"/>
+        <NavigationProperty Name="NavPA" Type="Collection(ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaErroresPASet)"/>
+        <NavigationProperty Name="NavTM" Type="Collection(ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaErroresTMSet)"/>
+        <NavigationProperty Name="NavCat" Type="Collection(ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaCatErroresSet)"/>
+        <NavigationProperty Name="NavTS" Type="Collection(ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaErroresTSSet)"/>
+        <NavigationProperty Name="NavTop5" Type="Collection(ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaTop5Set)"/>
+        <NavigationProperty Name="NavUE" Type="Collection(ZHRODATA_MONITOR_INTEGRACIONES_SRV.UltimaEjecucionSet)"/>
+      </EntityType>
+      <EntityType Name="TablaErroresSAPPA">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" Nullable="false"/>
+        <NavigationProperty Name="ITEMS" Type="Collection(ZHRODATA_MONITOR_INTEGRACIONES_SRV.TablaErroresPASet)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <Property Name="ITEMS_IdMonitor" Type="Edm.String" MaxLength="2"/>
+      </EntityType>
+      <EntityType Name="TablaErroresPASet">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Lognumber" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Zuneg" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Name1" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Land1" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="Extnumber" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Aluser" Type="Edm.String" Nullable="false"/>
+        <Property Name="Ename" Type="Edm.String" Nullable="false"/>
+        <Property Name="Kostl" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Abkrs" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Bukrs" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Butxt" Type="Edm.String" MaxLength="25" Nullable="false"/>
+        <Property Name="Werks" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Btrtl" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Plans" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="Aldate" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="Altime" Type="Edm.TimeOfDay" Nullable="false"/>
+        <Property Name="Clase" Type="Edm.String" Nullable="false"/>
+        <Property Name="IdError" Type="Edm.String" Nullable="false"/>
+        <Property Name="ErrorMsg" Type="Edm.String" Nullable="false"/>
+        <Property Name="Categorizacion" Type="Edm.String" Nullable="false"/>
+        <Property Name="Responsable" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Tipo_medida" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Desc_medida" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Negocio" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Begda" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Endda" Type="Edm.String" MaxLength="10" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="TablaErroresOMSet">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Lognumber" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Extnumber" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Otext" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Uneg" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Name1" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Land1" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="Aluser" Type="Edm.String" Nullable="false"/>
+        <Property Name="Objid" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="Otype" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Bukrs" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Butxt" Type="Edm.String" MaxLength="25" Nullable="false"/>
+        <Property Name="Persa" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Btrtl" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Aldate" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="Altime" Type="Edm.TimeOfDay" Nullable="false"/>
+        <Property Name="Clase" Type="Edm.String" Nullable="false"/>
+        <Property Name="IdError" Type="Edm.String" Nullable="false"/>
+        <Property Name="ErrorMsg" Type="Edm.String" Nullable="false"/>
+        <Property Name="Categorizacion" Type="Edm.String" Nullable="false"/>
+        <Property Name="Responsable" Type="Edm.String" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="TablaErroresTMSet">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Lognumber" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="PresAbs" Type="Edm.String" Nullable="false"/>
+        <Property Name="Extnumber" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Zuneg" Type="Edm.String" MaxLength="5" Nullable="false"/>
+        <Property Name="Land1" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="Aluser" Type="Edm.String" Nullable="false"/>
+        <Property Name="Ename" Type="Edm.String" Nullable="false"/>
+        <Property Name="Kostl" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Abkrs" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Bukrs" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Butxt" Type="Edm.String" MaxLength="25" Nullable="false"/>
+        <Property Name="Werks" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Name1" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Btrtl" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Plans" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="Aldate" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="Altime" Type="Edm.TimeOfDay" Nullable="false"/>
+        <Property Name="Clase" Type="Edm.String" Nullable="false"/>
+        <Property Name="IdError" Type="Edm.String" Nullable="false"/>
+        <Property Name="ErrorMsg" Type="Edm.String" Nullable="false"/>
+        <Property Name="Categorizacion" Type="Edm.String" Nullable="false"/>
+        <Property Name="Responsable" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Tipo_Medida" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Desc_medida" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Negocio" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Begda" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Endda" Type="Edm.String" MaxLength="10" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="TablaErroresTSSet">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Lognumber" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="PresAbs" Type="Edm.String" Nullable="false"/>
+        <Property Name="Zuneg" Type="Edm.String" MaxLength="5" Nullable="false"/>
+        <Property Name="Extnumber" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Land1" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="Aluser" Type="Edm.String" Nullable="false"/>
+        <Property Name="Ename" Type="Edm.String" Nullable="false"/>
+        <Property Name="Kostl" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Abkrs" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Bukrs" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Butxt" Type="Edm.String" MaxLength="25" Nullable="false"/>
+        <Property Name="Werks" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Name1" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Btrtl" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Plans" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="Aldate" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="Altime" Type="Edm.TimeOfDay" Nullable="false"/>
+        <Property Name="Clase" Type="Edm.String" Nullable="false"/>
+        <Property Name="IdError" Type="Edm.String" Nullable="false"/>
+        <Property Name="ErrorMsg" Type="Edm.String" Nullable="false"/>
+        <Property Name="Categorizacion" Type="Edm.String" Nullable="false"/>
+        <Property Name="Responsable" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="Tipo_medida" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Desc_medida" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Negocio" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Begda" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Endda" Type="Edm.String" MaxLength="10" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="TablaTop5Set">
+        <Key>
+          <PropertyRef Name="TipoMonitor"/>
+        </Key>
+        <Property Name="TipoMonitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Categorizacion" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="IdPersonal" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="MsjError" Type="Edm.String" MaxLength="200" Nullable="false"/>
+        <Property Name="Antiguedad" Type="Edm.DateTimeOffset" Precision="7" Nullable="false"/>
+        <Property Name="Clase" Type="Edm.String" Nullable="false"/>
+        <Property Name="UnidadNegocio" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Sociedad" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Butxt" Type="Edm.String" MaxLength="25" Nullable="false"/>
+        <Property Name="Division" Type="Edm.String" MaxLength="4" Nullable="false"/>
+        <Property Name="Name1" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Ename" Type="Edm.String" Nullable="false"/>
+        <Property Name="Abkrs" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Plans" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="Hora" Type="Edm.TimeOfDay" Nullable="false"/>
+        <Property Name="Lognumber" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="ZSUNEG" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="MASSN" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="MNTXT" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="Begda" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Endda" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Otype" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Otext" Type="Edm.String" MaxLength="100" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="UltimaEjecucionSet">
+        <Key>
+          <PropertyRef Name="IdMonitor"/>
+        </Key>
+        <Property Name="IdMonitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Monitor" Type="Edm.String" MaxLength="2" Nullable="false"/>
+        <Property Name="Fecha" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="Hora" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="Demoro" Type="Edm.String" MaxLength="1" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="ListaClaseErrorSet">
+        <Key>
+          <PropertyRef Name="Clase"/>
+        </Key>
+        <Property Name="Clase" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Tipo" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="Message" Type="Edm.String" MaxLength="200" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="ListaIdErrorSet">
+        <Key>
+          <PropertyRef Name="Clase"/>
+        </Key>
+        <Property Name="Clase" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Id" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="Tipo" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="Message" Type="Edm.String" MaxLength="200" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="CategoriaErrorSet">
+        <Key>
+          <PropertyRef Name="Clase"/>
+          <PropertyRef Name="Id"/>
+        </Key>
+        <Property Name="Clase" Type="Edm.String" MaxLength="20" Nullable="false"/>
+        <Property Name="Id" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="Categoria" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="Tipo" Type="Edm.String" MaxLength="1" Nullable="false"/>
+        <Property Name="Message" Type="Edm.String" MaxLength="200" Nullable="false"/>
+      </EntityType>
+      <ComplexType Name="AntiguedadErrores">
+        <Property Name="Menor2" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="De2a7" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="Mayor7menor14" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="Mayor14" Type="Edm.String" MaxLength="6" Nullable="false"/>
+      </ComplexType>
+      <ComplexType Name="CategoriaErrores">
+        <Property Name="ErrorOpera" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="ErrorNomina" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="ErrorConfig" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="ErrorBloqueo" Type="Edm.String" MaxLength="6" Nullable="false"/>
+      </ComplexType>
+      <ComplexType Name="GeneralErrores">
+        <Property Name="CantErroresAp" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantErroresOm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantErroresTs" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantErroresTm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesAp" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesOm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesTs" Type="Edm.String" MaxLength="6" Nullable="false"/>
+        <Property Name="CantSuccesTm" Type="Edm.String" MaxLength="6" Nullable="false"/>
+      </ComplexType>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

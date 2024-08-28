@@ -1,0 +1,15 @@
+ COLUMN TABLE TablaErroresSAP (
+    lognumber NVARCHAR(60),
+    extnumber NVARCHAR(60),
+    aldate NVARCHAR(60),
+    altime NVARCHAR(60),
+    pernrs NVARCHAR(60),
+    clase NVARCHAR(60),
+    id_error NVARCHAR(60),
+    error_msg NVARCHAR(60),
+    msgty NVARCHAR(60),
+    msgv1 NVARCHAR(60),
+    msgv2 NVARCHAR(60),
+    msgv3 NVARCHAR(60),
+    msgv4 NVARCHAR(60)
+)

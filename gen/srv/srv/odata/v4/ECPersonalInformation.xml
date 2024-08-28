@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="ECPersonalInformation" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="PerEmergencyContacts" EntityType="ECPersonalInformation.PerEmergencyContacts">
+          <NavigationPropertyBinding Path="addressNavDEFLT" Target="HrisEmergencyContactAddressDEFLT"/>
+          <NavigationPropertyBinding Path="personNav" Target="PerPerson"/>
+        </EntitySet>
+        <EntitySet Name="PerPhone" EntityType="ECPersonalInformation.PerPhone">
+          <NavigationPropertyBinding Path="personNav" Target="PerPerson"/>
+        </EntitySet>
+        <EntitySet Name="PersonKey" EntityType="ECPersonalInformation.PersonKey"/>
+        <EntitySet Name="PerPersonal" EntityType="ECPersonalInformation.PerPersonal">
+          <NavigationPropertyBinding Path="personNav" Target="PerPerson"/>
+        </EntitySet>
+        <EntitySet Name="PerSocialAccount" EntityType="ECPersonalInformation.PerSocialAccount">
+          <NavigationPropertyBinding Path="personNav" Target="PerPerson"/>
+        </EntitySet>
+        <EntitySet Name="PerPerson" EntityType="ECPersonalInformation.PerPerson">
+          <NavigationPropertyBinding Path="emailNav" Target="PerEmail"/>
+          <NavigationPropertyBinding Path="emergencyContactNav" Target="PerEmergencyContacts"/>
+          <NavigationPropertyBinding Path="homeAddressNavDEFLT" Target="PerAddressDEFLT"/>
+          <NavigationPropertyBinding Path="nationalIdNav" Target="PerNationalId"/>
+          <NavigationPropertyBinding Path="personRerlationshipNav" Target="PerPersonRelationship"/>
+          <NavigationPropertyBinding Path="personalInfoNav" Target="PerPersonal"/>
+          <NavigationPropertyBinding Path="phoneNav" Target="PerPhone"/>
+          <NavigationPropertyBinding Path="socialAccountNav" Target="PerSocialAccount"/>
+        </EntitySet>
+        <EntitySet Name="PerPersonRelationship" EntityType="ECPersonalInformation.PerPersonRelationship">
+          <NavigationPropertyBinding Path="personNav" Target="PerPerson"/>
+          <NavigationPropertyBinding Path="relNationalIdNav" Target="PerNationalId"/>
+          <NavigationPropertyBinding Path="relPersonNav" Target="PerPerson"/>
+          <NavigationPropertyBinding Path="relPersonalNav" Target="PerPersonal"/>
+        </EntitySet>
+        <EntitySet Name="PerEmail" EntityType="ECPersonalInformation.PerEmail">
+          <NavigationPropertyBinding Path="personNav" Target="PerPerson"/>
+        </EntitySet>
+        <EntitySet Name="HrisEmergencyContactAddressDEFLT" EntityType="ECPersonalInformation.HrisEmergencyContactAddressDEFLT"/>
+        <EntitySet Name="PerNationalId" EntityType="ECPersonalInformation.PerNationalId">
+          <NavigationPropertyBinding Path="personNav" Target="PerPerson"/>
+        </EntitySet>
+        <EntitySet Name="PerAddressDEFLT" EntityType="ECPersonalInformation.PerAddressDEFLT">
+          <NavigationPropertyBinding Path="personNav" Target="PerPerson"/>
+        </EntitySet>
+        <EntitySet Name="NameFormatGO" EntityType="ECPersonalInformation.NameFormatGO">
+          <NavigationPropertyBinding Path="nameElements" Target="NameElementGO"/>
+        </EntitySet>
+        <EntitySet Name="NameElementGO" EntityType="ECPersonalInformation.NameElementGO"/>
+        <EntitySet Name="PerBiographicalInfoLocBRA" EntityType="ECPersonalInformation.PerBiographicalInfoLocBRA"/>
+        <EntitySet Name="PerBiographicalInfoLocCHL" EntityType="ECPersonalInformation.PerBiographicalInfoLocCHL"/>
+        <EntitySet Name="PerBiographicalInfoLocFRA" EntityType="ECPersonalInformation.PerBiographicalInfoLocFRA"/>
+        <EntitySet Name="PerBiographicalInfoLocITA" EntityType="ECPersonalInformation.PerBiographicalInfoLocITA"/>
+        <EntitySet Name="PerBiographicalInfoLocVEN" EntityType="ECPersonalInformation.PerBiographicalInfoLocVEN"/>
+        <ActionImport Name="generateNextPersonID" Action="ECPersonalInformation.generateNextPersonID"/>
+      </EntityContainer>
+      <EntityType Name="PerEmergencyContacts">
+        <Key>
+          <PropertyRef Name="name"/>
+          <PropertyRef Name="personIdExternal"/>
+          <PropertyRef Name="relationship"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="256" Nullable="false"/>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="relationship" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="addressAddress1" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressAddress2" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressAddress3" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressCity" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressCountry" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressCounty" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressProvince" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressState" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressZipCode" Type="Edm.String" MaxLength="256"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="email" Type="Edm.String" MaxLength="100"/>
+        <Property Name="isAddSameAsEmployee" Type="Edm.Boolean"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="phone" Type="Edm.String" MaxLength="256"/>
+        <Property Name="primaryFlag" Type="Edm.String" MaxLength="1"/>
+        <Property Name="secondPhone" Type="Edm.String" MaxLength="256"/>
+        <NavigationProperty Name="addressNavDEFLT" Type="ECPersonalInformation.HrisEmergencyContactAddressDEFLT"/>
+        <NavigationProperty Name="personNav" Type="ECPersonalInformation.PerPerson"/>
+      </EntityType>
+      <EntityType Name="PerPhone">
+        <Key>
+          <PropertyRef Name="personIdExternal"/>
+          <PropertyRef Name="phoneType"/>
+        </Key>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="phoneType" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="areaCode" Type="Edm.String" MaxLength="32"/>
+        <Property Name="countryCode" Type="Edm.String" MaxLength="32"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="extension" Type="Edm.String" MaxLength="32"/>
+        <Property Name="includeAllRecords" Type="Edm.Boolean"/>
+        <Property Name="isPrimary" Type="Edm.Boolean"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="phoneNumber" Type="Edm.String" MaxLength="100"/>
+        <NavigationProperty Name="personNav" Type="ECPersonalInformation.PerPerson"/>
+      </EntityType>
+      <EntityType Name="PersonKey">
+        <Key>
+          <PropertyRef Name="personIdExternal"/>
+        </Key>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="32" Nullable="false"/>
+        <Property Name="perPersonUuid" Type="Edm.String" MaxLength="32"/>
+        <Property Name="personId" Type="Edm.Int64"/>
+      </EntityType>
+      <EntityType Name="PerPersonal">
+        <Key>
+          <PropertyRef Name="personIdExternal"/>
+          <PropertyRef Name="startDate"/>
+        </Key>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="startDate" Type="Edm.Date" Nullable="false"/>
+        <Property Name="attachmentId" Type="Edm.String"/>
+        <Property Name="businessFirstName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="businessLastName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="displayName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="endDate" Type="Edm.Date"/>
+        <Property Name="firstName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="gender" Type="Edm.String" MaxLength="2"/>
+        <Property Name="includeAllRecords" Type="Edm.Boolean"/>
+        <Property Name="initials" Type="Edm.String" MaxLength="128"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="lastName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="maritalStatus" Type="Edm.String" MaxLength="50"/>
+        <Property Name="middleName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="nationality" Type="Edm.String" MaxLength="128"/>
+        <Property Name="nativePreferredLang" Type="Edm.String" MaxLength="256"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="preferredName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="salutation" Type="Edm.String" MaxLength="128"/>
+        <Property Name="script" Type="Edm.String" MaxLength="32"/>
+        <Property Name="title" Type="Edm.String" MaxLength="128"/>
+        <NavigationProperty Name="personNav" Type="ECPersonalInformation.PerPerson"/>
+      </EntityType>
+      <EntityType Name="PerSocialAccount">
+        <Key>
+          <PropertyRef Name="domain"/>
+          <PropertyRef Name="personIdExternal"/>
+        </Key>
+        <Property Name="domain" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="imId" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="url" Type="Edm.String" MaxLength="256"/>
+        <NavigationProperty Name="personNav" Type="ECPersonalInformation.PerPerson"/>
+      </EntityType>
+      <EntityType Name="PerPerson">
+        <Key>
+          <PropertyRef Name="personIdExternal"/>
+        </Key>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="32" Nullable="false"/>
+        <Property Name="birthName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="countryOfBirth" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="dateOfBirth" Type="Edm.Date"/>
+        <Property Name="includeAllRecords" Type="Edm.Boolean"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="perPersonUuid" Type="Edm.String" MaxLength="32"/>
+        <Property Name="personId" Type="Edm.Int64"/>
+        <Property Name="regionOfBirth" Type="Edm.String" MaxLength="100"/>
+        <Property Name="userId" Type="Edm.String" MaxLength="100"/>
+        <NavigationProperty Name="emailNav" Type="Collection(ECPersonalInformation.PerEmail)"/>
+        <NavigationProperty Name="emergencyContactNav" Type="Collection(ECPersonalInformation.PerEmergencyContacts)"/>
+        <NavigationProperty Name="homeAddressNavDEFLT" Type="Collection(ECPersonalInformation.PerAddressDEFLT)"/>
+        <NavigationProperty Name="nationalIdNav" Type="Collection(ECPersonalInformation.PerNationalId)"/>
+        <NavigationProperty Name="personRerlationshipNav" Type="Collection(ECPersonalInformation.PerPersonRelationship)"/>
+        <NavigationProperty Name="personalInfoNav" Type="Collection(ECPersonalInformation.PerPersonal)"/>
+        <NavigationProperty Name="phoneNav" Type="Collection(ECPersonalInformation.PerPhone)"/>
+        <NavigationProperty Name="socialAccountNav" Type="Collection(ECPersonalInformation.PerSocialAccount)"/>
+      </EntityType>
+      <EntityType Name="PerPersonRelationship">
+        <Key>
+          <PropertyRef Name="personIdExternal"/>
+          <PropertyRef Name="relatedPersonIdExternal"/>
+          <PropertyRef Name="startDate"/>
+        </Key>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="relatedPersonIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="startDate" Type="Edm.Date" Nullable="false"/>
+        <Property Name="addressAddress1" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressAddress2" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressAddress3" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressCity" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressCountry" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressCounty" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressProvince" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressState" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressZipCode" Type="Edm.String" MaxLength="256"/>
+        <Property Name="attachmentId" Type="Edm.String"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="endDate" Type="Edm.Date"/>
+        <Property Name="firstName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="isAccompanyingDependent" Type="Edm.Boolean"/>
+        <Property Name="isAddressSameAsPerson" Type="Edm.Boolean"/>
+        <Property Name="isBeneficiary" Type="Edm.Boolean"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="lastName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="relationshipType" Type="Edm.String" MaxLength="30"/>
+        <NavigationProperty Name="personNav" Type="ECPersonalInformation.PerPerson"/>
+        <NavigationProperty Name="relNationalIdNav" Type="ECPersonalInformation.PerNationalId"/>
+        <NavigationProperty Name="relPersonNav" Type="ECPersonalInformation.PerPerson"/>
+        <NavigationProperty Name="relPersonalNav" Type="ECPersonalInformation.PerPersonal"/>
+      </EntityType>
+      <EntityType Name="PerEmail">
+        <Key>
+          <PropertyRef Name="emailType"/>
+          <PropertyRef Name="personIdExternal"/>
+        </Key>
+        <Property Name="emailType" Type="Edm.String" MaxLength="38" Nullable="false"/>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="emailAddress" Type="Edm.String" MaxLength="100"/>
+        <Property Name="includeAllRecords" Type="Edm.Boolean"/>
+        <Property Name="isPrimary" Type="Edm.Boolean"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <NavigationProperty Name="personNav" Type="ECPersonalInformation.PerPerson"/>
+      </EntityType>
+      <EntityType Name="HrisEmergencyContactAddressDEFLT">
+        <Key>
+          <PropertyRef Name="addressId"/>
+        </Key>
+        <Property Name="addressId" Type="Edm.Decimal" Nullable="false" Scale="variable"/>
+        <Property Name="address1" Type="Edm.String" MaxLength="256"/>
+        <Property Name="address2" Type="Edm.String" MaxLength="256"/>
+        <Property Name="address3" Type="Edm.String" MaxLength="256"/>
+        <Property Name="address4" Type="Edm.String" MaxLength="256"/>
+        <Property Name="address5" Type="Edm.String" MaxLength="256"/>
+        <Property Name="addressType" Type="Edm.String" MaxLength="30"/>
+        <Property Name="city" Type="Edm.String" MaxLength="256"/>
+        <Property Name="country" Type="Edm.String" MaxLength="256"/>
+        <Property Name="county" Type="Edm.String" MaxLength="256"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="endDate" Type="Edm.Date"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="notes" Type="Edm.String" MaxLength="4000"/>
+        <Property Name="province" Type="Edm.String" MaxLength="256"/>
+        <Property Name="startDate" Type="Edm.Date"/>
+        <Property Name="state" Type="Edm.String" MaxLength="256"/>
+        <Property Name="zipCode" Type="Edm.String" MaxLength="256"/>
+      </EntityType>
+      <EntityType Name="PerNationalId">
+        <Key>
+          <PropertyRef Name="cardType"/>
+          <PropertyRef Name="country"/>
+          <PropertyRef Name="personIdExternal"/>
+        </Key>
+        <Property Name="cardType" Type="Edm.String" MaxLength="256" Nullable="false"/>
+        <Property Name="country" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="isPrimary" Type="Edm.Boolean"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="nationalId" Type="Edm.String" MaxLength="256"/>
+        <Property Name="notes" Type="Edm.String" MaxLength="4000"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <NavigationProperty Name="personNav" Type="ECPersonalInformation.PerPerson"/>
+      </EntityType>
+      <EntityType Name="PerAddressDEFLT">
+        <Key>
+          <PropertyRef Name="addressType"/>
+          <PropertyRef Name="personIdExternal"/>
+          <PropertyRef Name="startDate"/>
+        </Key>
+        <Property Name="addressType" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="startDate" Type="Edm.Date" Nullable="false"/>
+        <Property Name="address1" Type="Edm.String" MaxLength="256"/>
+        <Property Name="address2" Type="Edm.String" MaxLength="256"/>
+        <Property Name="address3" Type="Edm.String" MaxLength="256"/>
+        <Property Name="address4" Type="Edm.String" MaxLength="256"/>
+        <Property Name="address5" Type="Edm.String" MaxLength="256"/>
+        <Property Name="city" Type="Edm.String" MaxLength="256"/>
+        <Property Name="country" Type="Edm.String" MaxLength="256"/>
+        <Property Name="county" Type="Edm.String" MaxLength="256"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="empUsersSysId" Type="Edm.String" MaxLength="256"/>
+        <Property Name="endDate" Type="Edm.Date"/>
+        <Property Name="includeAllRecords" Type="Edm.Boolean"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="notes" Type="Edm.String" MaxLength="4000"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="province" Type="Edm.String" MaxLength="256"/>
+        <Property Name="state" Type="Edm.String" MaxLength="256"/>
+        <Property Name="zipCode" Type="Edm.String" MaxLength="256"/>
+        <NavigationProperty Name="personNav" Type="ECPersonalInformation.PerPerson"/>
+      </EntityType>
+      <EntityType Name="NameFormatGO">
+        <Key>
+          <PropertyRef Name="externalCode"/>
+        </Key>
+        <Property Name="externalCode" Type="Edm.String" MaxLength="128" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="externalName" Type="Edm.String" MaxLength="128"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="mdfSystemCreatedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemCreatedDate" Type="Edm.Date"/>
+        <Property Name="mdfSystemEffectiveEndDate" Type="Edm.Date"/>
+        <Property Name="mdfSystemEffectiveStartDate" Type="Edm.Date"/>
+        <Property Name="mdfSystemEntityId" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemLastModifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemLastModifiedDate" Type="Edm.Date"/>
+        <Property Name="mdfSystemLastModifiedDateWithTZ" Type="Edm.DateTimeOffset"/>
+        <Property Name="mdfSystemObjectType" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemRecordId" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemRecordStatus" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemStatus" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemTransactionSequence" Type="Edm.Int64"/>
+        <Property Name="mdfSystemVersionId" Type="Edm.Int64"/>
+        <Property Name="sample" Type="Edm.String" MaxLength="255"/>
+        <NavigationProperty Name="nameElements" Type="Collection(ECPersonalInformation.NameElementGO)"/>
+      </EntityType>
+      <EntityType Name="NameElementGO">
+        <Key>
+          <PropertyRef Name="NameFormatGO_externalCode"/>
+          <PropertyRef Name="externalCode"/>
+        </Key>
+        <Property Name="NameFormatGO_externalCode" Type="Edm.String" MaxLength="128" Nullable="false"/>
+        <Property Name="externalCode" Type="Edm.String" MaxLength="128" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="createdDate" Type="Edm.Date"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="lastModifiedDate" Type="Edm.Date"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedDateWithTZ" Type="Edm.DateTimeOffset"/>
+        <Property Name="mdfSystemEffectiveEndDate" Type="Edm.Date"/>
+        <Property Name="mdfSystemEffectiveStartDate" Type="Edm.Date"/>
+        <Property Name="mdfSystemEntityId" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemObjectType" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemRecordId" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemRecordStatus" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemStatus" Type="Edm.String" MaxLength="255"/>
+        <Property Name="mdfSystemTransactionSequence" Type="Edm.Int64"/>
+        <Property Name="mdfSystemVersionId" Type="Edm.Int64"/>
+        <Property Name="nameArtifactEnum" Type="Edm.String" MaxLength="255"/>
+        <Property Name="sampleData" Type="Edm.String" MaxLength="255"/>
+        <Property Name="separator" Type="Edm.String" MaxLength="255"/>
+      </EntityType>
+      <EntityType Name="PerBiographicalInfoLocBRA">
+        <Key>
+          <PropertyRef Name="country"/>
+          <PropertyRef Name="personIdExternal"/>
+        </Key>
+        <Property Name="country" Type="Edm.String" Nullable="false"/>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="customString1" Type="Edm.String" MaxLength="256"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="placeOfBirth" Type="Edm.String" MaxLength="100"/>
+        <Property Name="regionOfBirth" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <EntityType Name="PerBiographicalInfoLocCHL">
+        <Key>
+          <PropertyRef Name="country"/>
+          <PropertyRef Name="personIdExternal"/>
+        </Key>
+        <Property Name="country" Type="Edm.String" Nullable="false"/>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="customString1" Type="Edm.String" MaxLength="256"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="placeOfBirth" Type="Edm.String" MaxLength="100"/>
+        <Property Name="regionOfBirth" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <EntityType Name="PerBiographicalInfoLocFRA">
+        <Key>
+          <PropertyRef Name="country"/>
+          <PropertyRef Name="personIdExternal"/>
+        </Key>
+        <Property Name="country" Type="Edm.String" Nullable="false"/>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="customString1" Type="Edm.String" MaxLength="256"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="placeOfBirth" Type="Edm.String" MaxLength="100"/>
+        <Property Name="regionOfBirth" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <EntityType Name="PerBiographicalInfoLocITA">
+        <Key>
+          <PropertyRef Name="country"/>
+          <PropertyRef Name="personIdExternal"/>
+        </Key>
+        <Property Name="country" Type="Edm.String" Nullable="false"/>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="customString1" Type="Edm.String" MaxLength="256"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="placeOfBirth" Type="Edm.String" MaxLength="100"/>
+        <Property Name="regionOfBirth" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <EntityType Name="PerBiographicalInfoLocVEN">
+        <Key>
+          <PropertyRef Name="country"/>
+          <PropertyRef Name="personIdExternal"/>
+        </Key>
+        <Property Name="country" Type="Edm.String" Nullable="false"/>
+        <Property Name="personIdExternal" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="createdDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="createdOn" Type="Edm.Date"/>
+        <Property Name="customString1" Type="Edm.String" MaxLength="256"/>
+        <Property Name="lastModifiedBy" Type="Edm.String" MaxLength="100"/>
+        <Property Name="lastModifiedDateTime" Type="Edm.DateTimeOffset"/>
+        <Property Name="lastModifiedOn" Type="Edm.Date"/>
+        <Property Name="operation" Type="Edm.String"/>
+        <Property Name="placeOfBirth" Type="Edm.String" MaxLength="100"/>
+        <Property Name="regionOfBirth" Type="Edm.String" MaxLength="100"/>
+      </EntityType>
+      <ComplexType Name="GenerateNextPersonIDResponse">
+        <Property Name="personID" Type="Edm.String"/>
+      </ComplexType>
+      <Action Name="generateNextPersonID" IsBound="false">
+        <ReturnType Type="ECPersonalInformation.GenerateNextPersonIDResponse"/>
+      </Action>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

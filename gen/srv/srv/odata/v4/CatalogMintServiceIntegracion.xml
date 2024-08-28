@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="CatalogMintServiceIntegracion" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="TablaErroresSAPPASet" EntityType="CatalogMintServiceIntegracion.TablaErroresSAPPASet">
+          <NavigationPropertyBinding Path="ITEMS" Target="TablaErroresSAPPAitems"/>
+        </EntitySet>
+        <EntitySet Name="TablaErroresSAPPAitems" EntityType="CatalogMintServiceIntegracion.TablaErroresSAPPAitems"/>
+      </EntityContainer>
+      <EntityType Name="TablaErroresSAPPASet">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <NavigationProperty Name="ITEMS" Type="Collection(CatalogMintServiceIntegracion.TablaErroresSAPPAitems)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <Property Name="ITEMS_FECHA_FILTRO" Type="Edm.String" MaxLength="8"/>
+        <Property Name="ITEMS_EXTNUMBER" Type="Edm.String" MaxLength="78"/>
+        <Property Name="ITEMS_CLASE" Type="Edm.String" MaxLength="30"/>
+        <Property Name="ITEMS_ID_ERROR" Type="Edm.String" MaxLength="10"/>
+        <Property Name="ITEMS_MSGV1" Type="Edm.String" MaxLength="50"/>
+        <Property Name="ITEMS_MSGV2" Type="Edm.String" MaxLength="50"/>
+        <Property Name="ITEMS_MSGV3" Type="Edm.String" MaxLength="50"/>
+        <Property Name="ITEMS_MSGV4" Type="Edm.String" MaxLength="50"/>
+      </EntityType>
+      <EntityType Name="TablaErroresSAPPAitems">
+        <Key>
+          <PropertyRef Name="FECHA_FILTRO"/>
+          <PropertyRef Name="EXTNUMBER"/>
+          <PropertyRef Name="CLASE"/>
+          <PropertyRef Name="ID_ERROR"/>
+          <PropertyRef Name="MSGV1"/>
+          <PropertyRef Name="MSGV2"/>
+          <PropertyRef Name="MSGV3"/>
+          <PropertyRef Name="MSGV4"/>
+        </Key>
+        <Property Name="FECHA_FILTRO" Type="Edm.String" MaxLength="8" Nullable="false"/>
+        <Property Name="EXTNUMBER" Type="Edm.String" MaxLength="78" Nullable="false"/>
+        <Property Name="CLASE" Type="Edm.String" MaxLength="30" Nullable="false"/>
+        <Property Name="ID_ERROR" Type="Edm.String" MaxLength="10" Nullable="false"/>
+        <Property Name="MSGV1" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="MSGV2" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="MSGV3" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="MSGV4" Type="Edm.String" MaxLength="50" Nullable="false"/>
+        <Property Name="LOGNUMBER" Type="Edm.String" MaxLength="20"/>
+        <Property Name="ZUNEG" Type="Edm.String" MaxLength="10"/>
+        <Property Name="NAME1" Type="Edm.String" MaxLength="30"/>
+        <Property Name="LAND1" Type="Edm.String" MaxLength="3"/>
+        <Property Name="ALUSER" Type="Edm.String" MaxLength="200"/>
+        <Property Name="ENAME" Type="Edm.String" MaxLength="200"/>
+        <Property Name="KOSTL" Type="Edm.String" MaxLength="10"/>
+        <Property Name="ABKRS" Type="Edm.String" MaxLength="2"/>
+        <Property Name="BUKRS" Type="Edm.String" MaxLength="4"/>
+        <Property Name="BUTXT" Type="Edm.String" MaxLength="25"/>
+        <Property Name="WERKS" Type="Edm.String" MaxLength="4"/>
+        <Property Name="BTRTL" Type="Edm.String" MaxLength="4"/>
+        <Property Name="PLANS" Type="Edm.String" MaxLength="8"/>
+        <Property Name="ALDATE" Type="Edm.String" MaxLength="8"/>
+        <Property Name="ALTIME" Type="Edm.String" MaxLength="6"/>
+        <Property Name="CATEGORIZACION" Type="Edm.String" MaxLength="600"/>
+        <Property Name="ID_CATEGORIA" Type="Edm.String" MaxLength="10"/>
+        <Property Name="TIPO_MEDIDA" Type="Edm.String" MaxLength="2"/>
+        <Property Name="DESC_MEDIDA" Type="Edm.String" MaxLength="30"/>
+        <Property Name="NEGOCIO" Type="Edm.String" MaxLength="10"/>
+      </EntityType>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
