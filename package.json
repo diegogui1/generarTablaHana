@@ -29,9 +29,9 @@
     "sqlite3": "^5"
   },
   "scripts": {
-    "start_local": "cds watch --profile backend",
+    "start": "cds watch --profile backend",
     "updatehana": "cds build && cf push -f ./gen/db/ -k 1000M",
-    "start": "cds-serve",
+    "start1": "cds-serve",
     "build": "mbt build",
     "gen": "mbt build -t mta_archives --mtar MINT_0.0.2.mtar",
     "deploy": "cf deploy mta_archives/MINT_0.0.2.mtar"
