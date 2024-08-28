@@ -15,15 +15,18 @@
 
 # CMD ["npm","start"]
 
-FROM ubuntu
+FROM node:18-alpine
 
 WORKDIR /usr/src/app
-COPY . /usr/src/app
+COPY package*.json ./
+COPY default-env.json ./
 RUN npm install
+
+COPY . .
  
 
-RUN find app -name '*.cds' | xargs rm -f
+#RUN find app -name '*.cds' | xargs rm -f
 
 EXPOSE 4004
-USER node
+#USER node
 CMD [ "npm", "start" ]
