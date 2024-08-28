@@ -15,7 +15,7 @@
 
 # CMD ["npm","start"]
 
-FROM node:14-slim
+FROM ubuntu
 
 WORKDIR /usr/src/app
 COPY . /usr/src/app
