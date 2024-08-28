@@ -1,0 +1,90 @@
+_schema-version: '3.2'
+ID: MINT
+version: 0.0.1
+
+parameters:
+  enable-parallel-deployments: true
+  appname: hanamint1
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
+
+modules:
+  # ---------------- DATABASE DEPLOYER MODULE ------------------
+  - name: MINT-db-deployer
+    # ------------------------------------------------------------
+    type: hdb
+    path: gen/db
+    build-parameters:
+      ignore:
+        - default-*.json
+        - .env
+        - "*node_modules*"
+        - package-lock.json
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 256M
+      disk-quota: 2024M
+    requires:
+      - name: MINT-uaa
+      - name: MINT-db
+
+  # --------------------- SERVER MODULE ------------------------
+  - name: MINT-srv
+    # ------------------------------------------------------------
+    type: nodejs
+    path: gen/srv
+    build-parameters:
+      ignore:
+        - default-*.json
+        - .env
+        - "*node_modules*"
+        - package-lock.json
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 512M
+      disk-quota: 2024M
+      routes:
+        - route: https://${appname}.${default-domain}
+       
+
+    requires:
+      - name: MINT-uaa
+      - name: MINT-db
+      - name: MINT-destination
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+
+resources:
+  # ----------------------- UAA SERVICE ------------------------
+  - name: MINT-uaa
+    # ------------------------------------------------------------
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+
+  # ------------------- HDI CONTAINER SERVICE ------------------
+  - name: MINT-db
+    # ------------------------------------------------------------
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+    properties:
+      hdi-service-name: ${service-name}
+      SEND_XFRAMEOPTIONS: false
+      XS_APP_LOG_LEVEL: DEBUG
+      REQUEST_TRACE: true
+  - name: MINT-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite

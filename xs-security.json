@@ -1,0 +1,27 @@
+{
+    "xsappname": "MINT_db",
+    "tenant-mode": "dedicated",
+    "description": "neah",
+    "scopes": [
+      {
+        "name": "uaa.user",
+        "description": "UAA"
+      }
+    ],
+    "role-templates": [
+      {
+        "name": "Token_Exchange",
+        "description": "UAA",
+        "scope-references": [
+          "uaa.user"
+        ]
+      }
+    ]
+    ,
+    "oauth2-configuration": {
+        "token-validity": 3600,
+        "redirect-uris": [
+            "https://*.hana.ondemand.com/login/callback"
+        ]
+    }
+}

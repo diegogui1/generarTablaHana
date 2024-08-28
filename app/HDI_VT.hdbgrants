@@ -1,0 +1,22 @@
+{
+    "CC_ACCESS":{
+        "object_owner": {
+            "global_roles": [
+                {
+                    "roles": [
+                        "HDI_MAIN_ROLE"
+                    ]
+                }
+            ]
+        },
+        "application_user": {
+            "global_roles": [
+                {
+                    "roles": [
+                        "HDI_MAIN_ROLE"
+                    ]
+                }
+            ]
+        }
+    }
+}

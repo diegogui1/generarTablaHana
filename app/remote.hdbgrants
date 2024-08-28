@@ -1,0 +1,17 @@
+{	"CC_ACCESS": {
+		"object_owner": {
+			"global_object_privileges": [
+				{
+					"name": "REPLICAHANACLOUD",
+					"type": "REMOTE SOURCE",
+					"privileges": [
+						"CREATE VIRTUAL TABLE",
+						"DROP",
+						"CREATE REMOTE SUBSCRIPTION",
+						"PROCESS REMOTE SUBSCRITPION EXCEPTION"
+					]
+				}
+			]
+		}
+	}
+}
